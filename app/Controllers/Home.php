@@ -8,9 +8,4 @@ class Home extends BaseController
     {
         return view('/main_page/index');
     }
-
-    public function dashboard()
-    {
-        return view('/dashboard/pages/index');
-    }
 }

@@ -31,8 +31,39 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->get('/home', 'Home::dashboard');
+
+// Make Password
+$routes->get('/testpass', 'Auth::testPass');
+
+// Auth
+$routes->get('login', 'Auth::login', ["as" => "login"], ["filter" => "noauth"]);
+$routes->get('register', 'Auth::register', ["as" => "register"], ["filter" => "noauth"]);
+$routes->get('logout', 'Auth::logout', ["as" => "logout"], ["filter" => "noauth"]);
+
+
+// Main
+$routes->get('/', 'Home::index', ["as" => "homeUser"]);
+
+// Dashboard
+// Admin routes
+$routes->group("admin", ["filter" => "auth"], function ($routes) {
+    $routes->get('/', 'Admin\DashboardController::index');
+
+    $routes->group("master", function($routes) {
+
+        // User
+        $routes->group("user", function($routes) {
+            $routes->get('/', 'Admin\UserController::index', ["as" => "userIndex"]);
+            $routes->get('create', 'Admin\UserController::create', ["as" => "userCreate"]);
+            $routes->post('store', 'Admin\UserController::store', ["as" => "userStore"]);
+            $routes->get('edit/(:num)', 'Admin\UserController::edit/$1', ["as" => "userEdit"]);
+            $routes->post('update/(:num)', 'Admin\UserController::update/$1', ["as" => "userUpdate"]);
+            $routes->get('delete/(:num)', 'Admin\UserController::delete/$1', ["as" => "userDelete"]);
+        });
+
+    });
+});
+
 
 /*
  * --------------------------------------------------------------------

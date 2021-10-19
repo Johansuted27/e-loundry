@@ -56,6 +56,15 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
+          <?php if (!session()->get('isLogin')){ ?>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?php echo base_url('/login') ?>"><i class="fa fa-sign-in-alt"></i> Login</a>
+            </li>
+          <?php } else { ?>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?php echo base_url('/logout') ?>"><i class="fa fa-sign-out-alt"></i> Logout</a>
+            </li>
+          <?php } ?>
         </ul>
       </div>
     </div>
