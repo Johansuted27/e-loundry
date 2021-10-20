@@ -45,7 +45,7 @@ class Validation
         'dob' => 'required',
         'gender' => 'required',
         'address' => 'required',
-        'email' => 'required|valid_email|is_unique[users.email]',
+        'email' => 'required|valid_email',
         'password' => 'min_length[8]|alpha_numeric_punct'
     ];
         
@@ -65,7 +65,7 @@ class Validation
         'email' => [
             'required' => 'Harap masukan email!',
             'valid_email' => 'Harap masukan email dengan benar!',
-            'is_unique' => 'Email sudah dipakai'
+            // 'is_unique' => 'Email sudah dipakai'
             ],
         'password' => [
             'min_length' => 'Password harus terdiri dari 8 kata',

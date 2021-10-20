@@ -114,10 +114,10 @@
                     <div class="card-body p-5">
                         <h5 class="font-weight-bold mb-1">Login</h5>
                         <p class="mb-4">Masukan username dan password anda!</p>
-                        <?php if($username){ ?>
+                        <?php if($email){ ?>
                             <div class="alert alert-danger w-100 mx-auto">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong><?php echo $username?></strong>
+                                <strong><?php echo $email?></strong>
                             </div>
                         <?php } ?>
                         

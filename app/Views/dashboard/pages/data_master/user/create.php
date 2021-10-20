@@ -3,6 +3,7 @@
 <?php 
 $session = session();
 $error = $session->getFlashdata('error');
+$email = $session->getFlashdata('email');
 ?>
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
@@ -17,7 +18,7 @@ $error = $session->getFlashdata('error');
         <div class="card">
             <div class="card-header d-flex">
                 <p class="mb-0 mt-1">Tambah Data User</p>
-                <a href="<?= base_url('/admin/master/user') ?>" class="btn btn-warning btn-sm ml-auto"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
+                <a href="<?= route_to('userIndex') ?>" class="btn btn-warning btn-sm ml-auto"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
             </div>
             <div class="card-body">
                 <?php if($error){ ?>
@@ -29,6 +30,12 @@ $error = $session->getFlashdata('error');
                         <?php } ?>
                     </ul>
                 </div>
+                <?php } ?>
+                <?php if($email){ ?>
+                    <div class="alert alert-danger w-100 mx-auto">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong><?php echo $email?></strong>
+                    </div>
                 <?php } ?>
                 <form action="<?= base_url('/admin/master/user/store') ?>" method="post" enctype="multipart/form-data">
                     <div class="row mg-b-25">

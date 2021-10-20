@@ -44,7 +44,7 @@
           </div>
         </a>
         <ul class="br-menu-sub nav flex-column">
-          <li class="nav-item"><a href="" class="nav-link">Users</a></li>
+          <li class="nav-item"><a href="<?= route_to('userIndex') ?>" class="nav-link">Users</a></li>
         </ul>
         <!-- <a href="#" class="br-menu-link">
           <div class="br-menu-item">
