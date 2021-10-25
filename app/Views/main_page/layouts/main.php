@@ -45,16 +45,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">Home</a>
+            <a class="nav-link js-scroll-trigger" href="#">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">About</a>
+            <a class="nav-link js-scroll-trigger" href="#about">Tentang Kami</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">Services</a>
+            <a class="nav-link js-scroll-trigger" href="#services">Layanan Kami</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="#contact">Kontak Kami</a>
           </li>
           <?php if (!session()->get('isLogin')){ ?>
             <li class="nav-item">
@@ -63,7 +63,7 @@
           <?php } else { ?>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Account
+                Akun
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="<?php echo base_url('/list/pesanan') ?>">Pesanan</a>
@@ -92,16 +92,16 @@
           </p>
           <ul class="list-inline quicklinks mb-2">
             <li class="list-inline-item ml-3">
-              <a href="<?php echo base_url('') ?>">Home</a>
+              <a href="<?php echo base_url('') ?>">Beranda</a>
             </li>
             <li class="list-inline-item ml-3">
-              <a href="<?php echo base_url('') ?>">About</a>
+              <a href="<?php echo base_url('') ?>">Tentang Kami</a>
             </li>
             <li class="list-inline-item ml-3">
-              <a href="<?php echo base_url('') ?>">Services</a>
+              <a href="<?php echo base_url('') ?>">Layanan Kami</a>
             </li>
             <li class="list-inline-item ml-3">
-              <a href="<?php echo base_url('') ?>">Contact</a>
+              <a href="<?php echo base_url('') ?>">Kontak Kami</a>
             </li>
           </ul>
           <ul class="list-inline social-buttons mb-3">
@@ -122,7 +122,7 @@
             </li>
           </ul>
           <p class="m-0 w-50 mx-auto text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate sed amet sed egestas est, ultricies euismod varius odio. Tortor, tempus, hac vel congue. Nullam neque a aliquam mattis scelerisque non vel. 
+            Laundry antar jemput daerah Jakarta Selatan dan sekitarnya. Hemat waktu dan simpel buat kamu yang #mager 
           </p>
         </div>
       </div>

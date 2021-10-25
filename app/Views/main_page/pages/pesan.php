@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="text-center">
                                     <h3>Paket Anak Kostan</h1>
-                                    <p style="height: 130px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, illo. Saepe, laborum numquam error neque sint, corporis optio earum blanditiis possimus dolor adipisci rem architecto facere sunt atque dignissimos eum.</p>
+                                    <p style="height: 130px;">Kami akan ambil secara rutin hingga depan kamar!! Buat kamu yang sedang tinggal di kos yang telah bekerjasama dengan kami</p>
                                     <a href="<?php echo base_url('paket-kostan') ?>" class="btn btn-primary text-uppercase">Pilih Paket</a>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="text-center">
                                     <h3>Paket Standar</h1>
-                                    <p style="height: 130px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo dolorum soluta minus alias. Perspiciatis, quia. Maiores numquam aperiam neque iste. Dolore libero ab excepturi molestias nam sequi, optio quis harum!</p>
+                                    <p style="height: 130px;">Buat kamu yang ingin mendapatkan kenyamanan laundry antar jemput rutin</p>
                                     <a href="<?php echo base_url('paket-standar') ?>" class="btn btn-primary text-uppercase">Pilih Paket</a>
                                 </div>
                             </div>

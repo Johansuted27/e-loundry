@@ -2,13 +2,12 @@ $(function(){
   'use strict'
 
   var ch1 = new Chartist.Line('#ch1', {
-    labels: [1, 2, 3, 4, 5, 6, 7, 8],
+    labels: ["Agst", "Sept", "Okt", "Nov", "Des"],
     series: [
-      [5, 9, 7, 8, 5, 3, 5, 4],
-      [10, 15, 10, 17, 8, 11, 16, 10]
+      [14, 35, 20, 15, 0, 0]
     ]
   }, {
-    high: 30,
+    high: 100,
     low: 0,
     axisY: {
       onlyInteger: true
