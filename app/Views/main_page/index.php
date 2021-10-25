@@ -61,8 +61,15 @@
               <a class="nav-link js-scroll-trigger" href="<?php echo base_url('/login') ?>"><i class="fa fa-sign-in-alt"></i> Login</a>
             </li>
           <?php } else { ?>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<?php echo base_url('/logout') ?>"><i class="fa fa-sign-out-alt"></i> Logout</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo base_url('') ?>">Pesanan</a>
+                <a class="dropdown-item" href="<?php echo base_url('') ?>">Profile</a>
+                <a class="dropdown-item" href="<?php echo base_url('/logout') ?>">Logout</a>
+              </div>
             </li>
           <?php } ?>
         </ul>
@@ -76,7 +83,11 @@
       <div class="intro-text">
         <div class="intro-heading">Laundry and Dry Cleaning</div>
         <div class="intro-lead-in">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate sed amet sed egestas est, ultricies euismod varius odio. Tortor, tempus, hac vel congue. Nullam neque a aliquam mattis scelerisque non vel. Nunc vitae et senectus turpis.</div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger px-4" style="border-radius: 30px;" href="#">Laundry Now</a>
+        <?php if (!session()->get('isLogin')){ ?>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger px-4" style="border-radius: 30px;" href="<?= base_url("/login") ?>">Laundry Now</a>
+        <?php } else { ?>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger px-4" style="border-radius: 30px;" href="<?= base_url("/pesan") ?>">Laundry Now</a>
+        <?php } ?>
       </div>
     </div>
   </header>

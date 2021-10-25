@@ -1,6 +1,8 @@
 <?php
 
 namespace Config;
+use App\Models\ProdukSatuanModel;
+use App\Models\EstimasiModel;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -43,6 +45,46 @@ $routes->get('logout', 'Auth::logout', ["as" => "logout"], ["filter" => "noauth"
 
 // Main
 $routes->get('/', 'Home::index', ["as" => "homeUser"]);
+
+// Pesan
+$routes->get('/pesan', function () {
+    if(!session()->has('isLogin')){
+        return redirect()->to(base_url());
+    } else {
+        return view('main_page/pages/pesan');
+    }
+});
+$routes->get('/paket-kostan', function () {
+    if(!session()->has('isLogin')){
+        return redirect()->to(base_url());
+    } else {
+        return view('main_page/pages/paket-kost');
+    }
+});
+$routes->get('/paket-standar', function () {
+    if(!session()->has('isLogin')){
+        return redirect()->to(base_url());
+    } else {
+        $product = new ProdukSatuanModel();
+        $estimasi = new EstimasiModel;
+        $data['product'] = $product->findAll();
+        $data['estimasi'] = $estimasi->findAll();
+        return view('main_page/pages/paket-standar', $data);
+    }
+});
+
+// Ajax Product
+$routes->post('/ajax/produk/satuan', function () {
+    $req = $this->request->getVar('id');
+    $product = new ProdukSatuanModel();
+    $data = $product->where('id', $req)->first();
+    echo json_encode($data);
+});
+
+$routes->add('transaction', 'Admin\TransactionController::createTransaction');
+$routes->add('tansaction/success', function () {
+    return view('main_page/pages/selesai_pesan');
+});
 
 // Dashboard
 // Admin routes

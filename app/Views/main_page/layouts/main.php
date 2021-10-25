@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Anis laundry</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="<?php echo base_url('/main_page/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
+  
+  <!-- Custom fonts for this template -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="<?php echo base_url('/main_page/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="<?php echo base_url('/main_page/css/style.css') ?>" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="<?= base_url() ?>" style="font-size: 1.25em; padding: 12px 0;">Anis Laundry</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="<?= base_url() ?>">Contact</a>
+          </li>
+          <?php if (!session()->get('isLogin')){ ?>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?php echo base_url('/login') ?>"><i class="fa fa-sign-in-alt"></i> Login</a>
+            </li>
+          <?php } else { ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo base_url('') ?>">Pesanan</a>
+                <a class="dropdown-item" href="<?php echo base_url('') ?>">Profile</a>
+                <a class="dropdown-item" href="<?php echo base_url('/logout') ?>">Logout</a>
+              </div>
+            </li>
+          <?php } ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <?= $this->renderSection('content') ?>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- <div class="col-md-4">
+          <span class="copyright">Copyright &copy; Your Website 2019</span>
+        </div> -->
+        <div class="col-md-12">
+          <p class="mb-2">
+            <a class="font-logo js-scroll-trigger" href="#page-top">Anis Laundry</a>
+          </p>
+          <ul class="list-inline quicklinks mb-2">
+            <li class="list-inline-item ml-3">
+              <a href="<?php echo base_url('') ?>">Home</a>
+            </li>
+            <li class="list-inline-item ml-3">
+              <a href="<?php echo base_url('') ?>">About</a>
+            </li>
+            <li class="list-inline-item ml-3">
+              <a href="<?php echo base_url('') ?>">Services</a>
+            </li>
+            <li class="list-inline-item ml-3">
+              <a href="<?php echo base_url('') ?>">Contact</a>
+            </li>
+          </ul>
+          <ul class="list-inline social-buttons mb-3">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+          <p class="m-0 w-50 mx-auto text-muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate sed amet sed egestas est, ultricies euismod varius odio. Tortor, tempus, hac vel congue. Nullam neque a aliquam mattis scelerisque non vel. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="<?php echo base_url('/main_page/vendor/jquery/jquery.min.js') ?>"></script>
+  <script src="<?php echo base_url('/main_page/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="<?php echo base_url('/main_page/vendor/jquery-easing/jquery.easing.min.js') ?>"></script>
+
+  <!-- Contact form JavaScript -->
+  <script src="<?php echo base_url('/main_page/js/jqBootstrapValidation.js') ?>"></script>
+  <script src="<?php echo base_url('/main_page/js/contact_me.js') ?>"></script>
+
+  <!-- Custom scripts for this template -->
+  <?= $this->renderSection('add-script') ?>
+</body>
+
+</html>

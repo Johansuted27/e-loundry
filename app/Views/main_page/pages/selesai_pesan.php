@@ -64,6 +64,11 @@
         }
         .card{
             border: none;
+            /* -webkit-box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.2);
+            box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.2); */
+        }
+        .card:hover{
             -webkit-box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.2);
             -moz-box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.2);
             box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.2);
@@ -93,66 +98,20 @@
         }
     </style>
 
-    <title>Login Page</title>
+    <title>Success Checkout</title>
 </head>
 <body class="main">
-<?php 
-    $session = session();
-    $login = $session->getFlashdata('login');
-    $email = $session->getFlashdata('email');
-    $password = $session->getFlashdata('password');
-?>
 <!-- Main Section -->
 <section style="height: 100% !important;">
     <div class="container" style="height: 100% !important;">
         <div class="h-100 row">
             <div class="mx-auto my-auto col-12 col-md-6 col-lg-6">
-                <div class="text-center mb-4 logo">
-                    <a href="<?php echo base_url('/') ?>"><h2><b>Anis Laundry</b></h2></a>
-                </div>
                 <div class="card">
-                    <div class="card-body p-5">
-                        <h5 class="font-weight-bold mb-1">Login</h5>
-                        <p class="mb-4">Masukan username dan password anda!</p>
-                        <?php if($email){ ?>
-                            <div class="alert alert-danger w-100 mx-auto">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong><?php echo $email?></strong>
-                            </div>
-                        <?php } ?>
-                        
-                        <?php if($password){ ?>
-                            <div class="alert alert-danger w-100 mx-auto">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong><?php echo $password?></strong>
-                            </div>
-                        <?php } ?>
-                        
-                        <?php if($login){ ?>
-                            <div class="alert alert-success w-100 mx-auto">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong><?php echo $login?></strong>
-                            </div>
-                        <?php } ?>
-
-                        <form action="/auth/valid_login" method="POST" autocomplete="off">
-                            <div class="position-relative mb-4">
-                                <div class="form-group form-custom-label">
-                                    <input type="email" name="email" id="email" class="form-control" name="email"required autocomplete="email" autofocus>
-                                    <span>Email</span>
-                                </div>
-                            </div>
-                            <div class="position-relative mb-4">
-                                <div class="form-group form-custom-label">
-                                    <input type="password" name="password" id="password" class="form-control" name="password" required autocomplete="current-password">
-                                    <span>Password</span>
-                                </div>
-                            </div>
-                            <p>Belum punya akun? <a href="<?php echo base_url('/register') ?>">Register</a></p>
-                            <div class="position-relative mt-3">
-                                <button type="submit" id="btn-custom" class="btn btn-primary px-5 py-2 btn-sm font-weight-bold text-uppercase">Login</button>
-                            </div>
-                        </form>
+                    <div class="card-body text-center">
+                        <img src="<?php echo base_url('main_page/img/process.png') ?>" width="100%" alt="">
+                        <h1 class="text-uppercase font-weight-bold">Terimakasih</h1>
+                        <h5 class="text-uppercase font-weight-bold mb-4">Pesanan anda akan segera kami proses!</h5>
+                        <a href="<?= base_url() ?>" class="btn btn-primary px-5 py-3">Beranda</a>
                     </div>
                 </div>
             </div>
