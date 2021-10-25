@@ -3,6 +3,9 @@
 namespace Config;
 use App\Models\ProdukSatuanModel;
 use App\Models\EstimasiModel;
+use App\Models\TransactionModel;
+use App\Models\TransactionDetailModel;
+use App\Models\UserModel;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -85,6 +88,139 @@ $routes->add('transaction', 'Admin\TransactionController::createTransaction');
 $routes->add('tansaction/success', function () {
     return view('main_page/pages/selesai_pesan');
 });
+$routes->get('/list/pesanan', function () {
+    if(!session()->has('isLogin')){
+        return redirect()->to(base_url());
+    } else {
+        $trx = new TransactionModel();
+        $data['trx'] = $trx->where('user_id',session()->get('id'))->findAll();
+        return view('main_page/pages/user/transaksi', $data);
+    }
+});
+$routes->get('/my-profile', function () {
+    $this->session = \Config\Services::session();
+    
+    if(!session()->has('isLogin')){
+        return redirect()->to(base_url());
+    } else {
+        $user = new UserModel();
+        $data['user'] = $user->where('id', session()->get('id'))->first();
+        return view('main_page/pages/user/profile', $data);
+    }
+});
+$routes->post('/my-profile/ubah/(:num)', function ($id) {
+    $this->session = \Config\Services::session();
+    
+    if(!session()->has('isLogin')){
+        return redirect()->to(base_url());
+    } else {
+        $user = new UserModel();
+        $data['user'] = $user->where('id', $id)->first();
+
+        $cek_email = $user->where('email',$this->request->getPost('email'))->first();
+        
+        if ($cek_email) {
+            if ($data['user']['id'] == $cek_email['id']) {
+                // echo 1;
+                if ($this->request->getPost('password')) {
+                    
+                    $validation =  \Config\Services::validation();
+        
+                    $isDataValid = $validation->run($this->request->getPost(), 'register');
+        
+                    $errors = $validation->getErrors();
+                    
+                    if($errors){
+                        session()->setFlashdata('error', $errors);
+                        return view('main_page/pages/user/profile', $data);
+                    }
+                    
+                    if($isDataValid){             
+                        $salt = uniqid('', true);
+                        $password = md5($this->request->getPost('password')).$salt;    
+                    }
+                    
+                } else {
+                    $salt = $data['user']['salt'];
+                    $password = $data['user']['password'];   
+                }
+    
+                // echo $password;
+        
+                $user->update($id, [
+                    "name" => $this->request->getPost('name'),
+                    "dob" => $this->request->getPost('dob'),
+                    "gender" => $this->request->getPost('gender'),
+                    "address" => $this->request->getPost('address'),
+                    "email" => $this->request->getPost('email'),
+                    "password" => $password,
+                    "salt" => $salt
+                ]);
+                session()->setFlashdata('success', 'Berhasil edit data!');
+                return redirect()->to(base_url('my-profile'));
+    
+            } else {
+                session()->setFlashdata('email', 'Email telah digunakan!');
+                return view('main_page/pages/user/profile', $data);
+            }
+        } else {
+            if ($this->request->getPost('password')) {
+                    
+                $validation =  \Config\Services::validation();
+    
+                $isDataValid = $validation->run($this->request->getPost(), 'register');
+    
+                $errors = $validation->getErrors();
+                
+                if($errors){
+                    session()->setFlashdata('error', $errors);
+                    return view('main_page/pages/user/profile', $data);
+                }
+                
+                if($isDataValid){             
+                    $salt = uniqid('', true);
+                    $password = md5($this->request->getPost('password')).$salt;    
+                }
+                
+            } else {
+                $salt = $data['user']['salt'];
+                $password = $data['user']['password'];   
+            }
+
+            // echo $password;
+    
+            $user->update($id, [
+                "name" => $this->request->getPost('name'),
+                "dob" => $this->request->getPost('dob'),
+                "gender" => $this->request->getPost('gender'),
+                "address" => $this->request->getPost('address'),
+                "email" => $this->request->getPost('email'),
+                "password" => $password,
+                "salt" => $salt
+            ]);
+            session()->setFlashdata('success', 'Berhasil edit data!');
+            return redirect()->to(base_url('my-profile'));
+        }
+    }
+});
+
+$routes->post('/upload-bukti', function () {
+    $trans = new TransactionModel();
+    $dataBerkas = $this->request->getFile('bukti_tf');
+    $fileName = $dataBerkas->getRandomName();
+
+    $data['trans'] = $trans->where('id', $this->request->getPost('id'))->first();
+
+    // return $this->request->getPost('id');
+
+    $trans->update($this->request->getPost('id'),[
+        'bukti_tf' => $fileName,
+        'status' => "Sedang di Konfirmasi"
+    ]);
+    $dataBerkas->move('uploads/bukti/', $fileName);
+    return redirect()->to(base_url('list/pesanan'));
+});
+
 
 // Dashboard
 // Admin routes

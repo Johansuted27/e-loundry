@@ -29,7 +29,7 @@
 
   <!-- Custom styles for this template -->
   <link href="<?php echo base_url('/main_page/css/style.css') ?>" rel="stylesheet">
-
+  <?= $this->renderSection('add-style') ?>
 </head>
 
 <body id="page-top">
@@ -66,8 +66,8 @@
                 My Account
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="<?php echo base_url('') ?>">Pesanan</a>
-                <a class="dropdown-item" href="<?php echo base_url('') ?>">Profile</a>
+                <a class="dropdown-item" href="<?php echo base_url('/list/pesanan') ?>">Pesanan</a>
+                <a class="dropdown-item" href="<?php echo base_url('/my-profile') ?>">Profile</a>
                 <a class="dropdown-item" href="<?php echo base_url('/logout') ?>">Logout</a>
               </div>
             </li>

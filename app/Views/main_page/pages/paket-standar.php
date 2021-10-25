@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label>Total</label>
                                     <input type="hidden" name="total" id="total_pesanan_hd" class="form-control" readonly>
-                                    <input type="text" name="total" id="total_pesanan" class="form-control" readonly>
+                                    <input type="text" name="" id="total_pesanan" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary" type="submit">Pesan Sekarang</button>
@@ -207,6 +207,7 @@
         });
 
         $("#total_pesanan").val(convertToRupiah(sum));
+        $("#total_pesanan_hd").val(sum);
     }
 
 </script>
