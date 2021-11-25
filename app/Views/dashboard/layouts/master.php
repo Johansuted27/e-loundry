@@ -40,10 +40,10 @@
         </a>
         <ul class="br-menu-sub nav flex-column">
           <li class="nav-item"><a href="<?= route_to('userIndex') ?>" class="nav-link">Users</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Paket Estimasi</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Paket Layanan</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Paket Produk</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Role</a></li>
+          <li class="nav-item"><a href="<?= route_to('p_estimasiIndex') ?>" class="nav-link">Paket Estimasi</a></li>
+          <li class="nav-item"><a href="<?= route_to('p_layananIndex') ?>" class="nav-link">Paket Layanan</a></li>
+          <li class="nav-item"><a href="<?= route_to('p_produkIndex') ?>" class="nav-link">Paket Produk</a></li>
+          <li class="nav-item"><a href="<?= route_to('roleIndex') ?>" class="nav-link">Role</a></li>
         </ul>
         <a href="" class="br-menu-link">
           <div class="br-menu-item">

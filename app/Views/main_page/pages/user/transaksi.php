@@ -37,7 +37,7 @@
                         ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $trxs['code_trans']; ?></td>
+                            <td><?= $trxs['code_trx']; ?></td>
                             <td><?= "Rp " . number_format($trxs['total_price'],2,',','.'); ?></td>
                             <td><?= $trxs['tgl_pengambilan']; ?></td>
                             <td class="text-capitalize">Laundy <?= $trxs['type']; ?></td>

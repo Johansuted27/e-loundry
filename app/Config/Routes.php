@@ -238,6 +238,46 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
             $routes->post('update/(:num)', 'Admin\UserController::update/$1', ["as" => "userUpdate"]);
             $routes->get('delete/(:num)', 'Admin\UserController::delete/$1', ["as" => "userDelete"]);
         });
+        
+        // Role
+        $routes->group("role", function($routes) {
+            $routes->get('/', 'Admin\RoleController::index', ["as" => "roleIndex"]);
+            $routes->get('create', 'Admin\RoleController::create', ["as" => "roleCreate"]);
+            $routes->post('store', 'Admin\RoleController::store', ["as" => "roleStore"]);
+            $routes->get('edit/(:num)', 'Admin\RoleController::edit/$1', ["as" => "roleEdit"]);
+            $routes->post('update/(:num)', 'Admin\RoleController::update/$1', ["as" => "roleUpdate"]);
+            $routes->get('delete/(:num)', 'Admin\RoleController::delete/$1', ["as" => "roleDelete"]);
+        });
+
+        // Paket Estimasi
+        $routes->group("paket-estimasi", function($routes) {
+            $routes->get('/', 'Admin\PaketEstimasiController::index', ["as" => "p_estimasiIndex"]);
+            $routes->get('create', 'Admin\PaketEstimasiController::create', ["as" => "p_estimasiCreate"]);
+            $routes->post('store', 'Admin\PaketEstimasiController::store', ["as" => "p_estimasiStore"]);
+            $routes->get('edit/(:num)', 'Admin\PaketEstimasiController::edit/$1', ["as" => "p_estimasiEdit"]);
+            $routes->post('update/(:num)', 'Admin\PaketEstimasiController::update/$1', ["as" => "p_estimasiUpdate"]);
+            $routes->get('delete/(:num)', 'Admin\PaketEstimasiController::delete/$1', ["as" => "p_estimasiDelete"]);
+        });
+
+        // Paket Layanan
+        $routes->group("paket-layanan", function($routes) {
+            $routes->get('/', 'Admin\PaketLayananController::index', ["as" => "p_layananIndex"]);
+            $routes->get('create', 'Admin\PaketLayananController::create', ["as" => "p_layananCreate"]);
+            $routes->post('store', 'Admin\PaketLayananController::store', ["as" => "p_layananStore"]);
+            $routes->get('edit/(:num)', 'Admin\PaketLayananController::edit/$1', ["as" => "p_layananEdit"]);
+            $routes->post('update/(:num)', 'Admin\PaketLayananController::update/$1', ["as" => "p_layananUpdate"]);
+            $routes->get('delete/(:num)', 'Admin\PaketLayananController::delete/$1', ["as" => "p_layananDelete"]);
+        });
+
+        // Paket Layanan
+        $routes->group("paket-produk", function($routes) {
+            $routes->get('/', 'Admin\PaketProdukController::index', ["as" => "p_produkIndex"]);
+            $routes->get('create', 'Admin\PaketProdukController::create', ["as" => "p_produkCreate"]);
+            $routes->post('store', 'Admin\PaketProdukController::store', ["as" => "p_produkStore"]);
+            $routes->get('edit/(:num)', 'Admin\PaketProdukController::edit/$1', ["as" => "p_produkEdit"]);
+            $routes->post('update/(:num)', 'Admin\PaketProdukController::update/$1', ["as" => "p_produkUpdate"]);
+            $routes->get('delete/(:num)', 'Admin\PaketProdukController::delete/$1', ["as" => "p_produkDelete"]);
+        });
 
     });
 });

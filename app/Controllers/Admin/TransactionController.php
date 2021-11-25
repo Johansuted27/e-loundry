@@ -32,7 +32,7 @@ class TransactionController extends BaseController
 
         // Simpan ke table transactions
         $this->TransactionModel->insert([
-            'code_trans' => $this->generateRandomString(),
+            'code_trx' => $this->generateRandomString(),
             'user_id' => $user['id'],
             'paket_id' => $row['paket_id'],
             'estimasi_id' => $row['estimasi'],
