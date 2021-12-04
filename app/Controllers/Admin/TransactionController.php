@@ -75,9 +75,27 @@ class TransactionController extends BaseController
         $trx = new TransactionModel();
         $data['trx'] = $trx->where('id', $id)->first();
         
-        // Delete
         $trx->delete($id);
         session()->setFlashdata('success', 'Berhasil menghapus data!');
         return redirect()->route('transactionIndex');
     }
+    
+    public function updateStatus($id)
+    {
+        $trx = new TransactionModel();
+        $data = $trx->where('id', $id)->first();
+
+        if ($data['status'] == "Belum di Bayar" || $data['status'] == "Sedang di Konfirmasi") {
+            $trx->update($id, [
+                "status" => "Sudah di Bayar",
+            ]);
+        } else {
+            $trx->update($id, [
+                "status" => "Belum di Bayar",
+            ]);
+        }
+        session()->setFlashdata('success', 'Berhasil ubah status!');
+        return redirect()->route('transactionIndex');
+    }
+
 }

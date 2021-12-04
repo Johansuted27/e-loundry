@@ -284,6 +284,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     // Transaksi
     $routes->group("history-transaction", function($routes) {
         $routes->get('/', 'Admin\TransactionController::index', ["as" => "transactionIndex"]);
+        $routes->get('ubah-status/(:num)', 'Admin\TransactionController::updateStatus/$1', ["as" => "transactionUpdateStatus"]);
         $routes->get('delete/(:num)', 'Admin\TransactionController::delete/$1', ["as" => "transactionDelete"]);
     });
 

@@ -107,7 +107,7 @@
     <script src="<?php echo base_url('/dashboard/lib/datatables-responsive/dataTables.responsive.js') ?>"></script>
 
     <script src="<?php echo base_url('/dashboard/js/bracket.js') ?>"></script>
-    
+
     <script>
         $(function(){
             'use strict';
@@ -141,6 +141,8 @@
             });
         });
     </script>
+
+    <?= $this->renderSection('add-script') ?>
     
   </body>
 </html>
