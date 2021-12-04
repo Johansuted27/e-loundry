@@ -25,6 +25,13 @@ class TransactionController extends BaseController
 	    return $randomString;
 	}
 
+    public function index()
+    {
+        $trx = new TransactionModel();
+        $data['trx'] = $trx->findAll();
+        return view('dashboard/pages/transaksi/index', $data);
+    }
+
     public function createTransaction()
     {
         $user = $this->UserModel->where('id', session()->get('id'))->first();
@@ -61,5 +68,16 @@ class TransactionController extends BaseController
 
         return redirect()->to(base_url('/tansaction/success'));
 
+    }
+    
+    public function delete($id)
+    {
+        $trx = new TransactionModel();
+        $data['trx'] = $trx->where('id', $id)->first();
+        
+        // Delete
+        $trx->delete($id);
+        session()->setFlashdata('success', 'Berhasil menghapus data!');
+        return redirect()->route('transactionIndex');
     }
 }

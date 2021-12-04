@@ -31,6 +31,12 @@
     <div class="br-sideleft overflow-y-auto">
       <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
       <div class="br-sideleft-menu">
+        <a href="<?= route_to('adminIndex') ?>" class="br-menu-link">
+          <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-home tx-22"></i>
+            <span class="menu-item-label">Dashboard</span>
+          </div>
+        </a>
         <a href="#" class="br-menu-link">
           <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-24"></i>
@@ -45,7 +51,7 @@
           <li class="nav-item"><a href="<?= route_to('p_produkIndex') ?>" class="nav-link">Paket Produk</a></li>
           <li class="nav-item"><a href="<?= route_to('roleIndex') ?>" class="nav-link">Role</a></li>
         </ul>
-        <a href="" class="br-menu-link">
+        <a href="<?= route_to('transactionIndex') ?>" class="br-menu-link">
           <div class="br-menu-item">
             <i class="menu-item-icon icon ion-card tx-22"></i>
             <span class="menu-item-label">Transaksi</span>
@@ -101,11 +107,29 @@
     <script src="<?php echo base_url('/dashboard/lib/datatables-responsive/dataTables.responsive.js') ?>"></script>
 
     <script src="<?php echo base_url('/dashboard/js/bracket.js') ?>"></script>
-    <script src="<?php echo base_url('/dashboard/js/dashboard.js') ?>"></script>
     
     <script>
         $(function(){
             'use strict';
+
+            var ch1 = new Chartist.Line('#ch1', {
+              labels: ["Agst", "Sept", "Okt", "Nov", "Des"],
+              series: [
+                [14, 35, 20, 15, 0, 0]
+              ]
+            }, {
+              high: 100,
+              low: 0,
+              axisY: {
+                onlyInteger: true
+              },
+              showArea: true,
+              fullWidth: true,
+              chartPadding: {
+                bottom: 0,
+                left: 0
+              }
+            });
 
             $('#datatable1').DataTable({
             responsive: true,

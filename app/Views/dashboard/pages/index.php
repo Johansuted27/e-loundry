@@ -19,7 +19,7 @@
                 <i class="ion ion-person-stalker tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                     <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">User</p>
-                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">10</p>
+                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1"><?= $users; ?></p>
                 </div>
                 </div>
             </div>
@@ -29,8 +29,19 @@
                 <div class="pd-25 d-flex align-items-center">
                 <i class="ion ion-bag tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
-                    <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Produk</p>
-                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">50</p>
+                    <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Paket Produk</p>
+                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1"><?= $products; ?></p>
+                </div>
+                </div>
+            </div>
+        </div><!-- col-3 -->
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+            <div class="bg-br-primary rounded overflow-hidden">
+                <div class="pd-25 d-flex align-items-center">
+                <i class="ion ion-person tx-60 lh-0 tx-white op-7"></i>
+                <div class="mg-l-20">
+                    <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Paket Layanan</p>
+                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1"><?= $layanans; ?></p>
                 </div>
                 </div>
             </div>
@@ -41,18 +52,7 @@
                 <i class="ion ion-card tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                     <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Transaksi</p>
-                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">10</p>
-                </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
-            <div class="bg-br-primary rounded overflow-hidden">
-                <div class="pd-25 d-flex align-items-center">
-                <i class="ion ion-person tx-60 lh-0 tx-white op-7"></i>
-                <div class="mg-l-20">
-                    <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Role</p>
-                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">3</p>
+                    <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1"><?= $transactions; ?></p>
                 </div>
                 </div>
             </div>

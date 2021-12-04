@@ -17,6 +17,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" class="form-control" placeholder="Nomor Transaksi">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary w-100">Cari</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
                 <table id="table-transaksi" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -59,7 +70,7 @@
                             </td>
                         </tr>
                         <?php } ?>
-                        <?php } ?>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>

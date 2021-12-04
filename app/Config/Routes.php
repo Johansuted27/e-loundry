@@ -225,7 +225,7 @@ $routes->post('/upload-bukti', function () {
 // Dashboard
 // Admin routes
 $routes->group("admin", ["filter" => "auth"], function ($routes) {
-    $routes->get('/', 'Admin\DashboardController::index');
+    $routes->get('/', 'Admin\DashboardController::index', ["as" => "adminIndex"]);
 
     $routes->group("master", function($routes) {
 
@@ -280,6 +280,13 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
         });
 
     });
+
+    // Transaksi
+    $routes->group("history-transaction", function($routes) {
+        $routes->get('/', 'Admin\TransactionController::index', ["as" => "transactionIndex"]);
+        $routes->get('delete/(:num)', 'Admin\TransactionController::delete/$1', ["as" => "transactionDelete"]);
+    });
+
 });
 
 
