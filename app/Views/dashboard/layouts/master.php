@@ -17,6 +17,7 @@
     <link href="<?php echo base_url('/dashboard/lib/perfect-scrollbar/css/perfect-scrollbar.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('/dashboard/lib/jquery-switchbutton/jquery.switchButton.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('/dashboard/lib/chartist/chartist.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
     <link href="<?php echo base_url('/dashboard/lib/datatables/jquery.dataTables.css') ?>" rel="stylesheet">
 
     <!-- Bracket CSS -->
@@ -104,6 +105,7 @@
     <script src="<?php echo base_url('/dashboard/lib/peity/jquery.peity.js') ?>"></script>
     <script src="<?php echo base_url('/dashboard/lib/chartist/chartist.js') ?>"></script>
     <script src="<?php echo base_url('/dashboard/lib/datatables/jquery.dataTables.js') ?>"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url('/dashboard/lib/datatables-responsive/dataTables.responsive.js') ?>"></script>
 
     <script src="<?php echo base_url('/dashboard/js/bracket.js') ?>"></script>

@@ -28,6 +28,7 @@
                     </div>
                 </form>
                 <hr>
+                <a href="<?= base_url('list/pesanan') ?>" class="btn btn-success mb-3">Lihat semua</a>
                 <table id="table-transaksi" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -42,34 +43,29 @@
                     </thead>
                     <tbody>
                     <?php if($trx){ ?>
-                        <?php
-                            $no = 1; 
-                            foreach($trx as $trxs) {
-                        ?>
                         <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $trxs['code_trx']; ?></td>
-                            <td><?= "Rp " . number_format($trxs['total_price'],2,',','.'); ?></td>
-                            <td><?= $trxs['tgl_pengambilan']; ?></td>
-                            <td class="text-capitalize">Laundy <?= $trxs['type']; ?></td>
+                            <td>1</td>
+                            <td><?= $trx['code_trx']; ?></td>
+                            <td><?= "Rp " . number_format($trx['total_price'],2,',','.'); ?></td>
+                            <td><?= $trx['tgl_pengambilan']; ?></td>
+                            <td class="text-capitalize">Laundy <?= $trx['type']; ?></td>
                             <td>
-                                <?php if ($trxs['bukti_tf']) { ?>
+                                <?php if ($trx['bukti_tf']) { ?>
                                     <i class="text-info">Sudah Unggah</i>
                                 <?php } else { ?>  
-                                    <button type="button" class="btn btn-primary btn-sm btn-upload" data-toggle="modal" data-target="#modalUpload" data-id="<?= $trxs['id']; ?>">
+                                    <button type="button" class="btn btn-primary btn-sm btn-upload" data-toggle="modal" data-target="#modalUpload" data-id="<?= $trx['id']; ?>">
                                         <i class="fa fa-upload"></i> Unggah Bukti
                                     </button>
                                 <?php } ?>
                             </td>
                             <td>
-                                <?php if ($trxs['status'] == 'Belum di Bayar') { ?>
-                                    <div class="badge badge-danger"><?= $trxs['status']; ?></div>
+                                <?php if ($trx['status'] == 'Belum di Bayar') { ?>
+                                    <div class="badge badge-danger"><?= $trx['status']; ?></div>
                                 <?php } else { ?>
-                                    <div class="badge badge-info"><?= $trxs['status']; ?></div>
+                                    <div class="badge badge-info"><?= $trx['status']; ?></div>
                                 <?php } ?>
                             </td>
                         </tr>
-                        <?php } ?>
                     <?php } ?>
                     </tbody>
                 </table>

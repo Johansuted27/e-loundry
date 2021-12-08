@@ -221,6 +221,13 @@ $routes->post('/upload-bukti', function () {
     return redirect()->to(base_url('list/pesanan'));
 });
 
+$routes->post('/list/pesanan/code', function () {
+    $trx = new TransactionModel();
+    $data['trx'] = $trx->where('code_trx', $this->request->getPost('code_trx'))->first();
+    // echo $trx['code_trx'];
+    return view('main_page/pages/user/transaksi-withcode', $data);
+});
+
 
 // Dashboard
 // Admin routes
@@ -285,7 +292,11 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->group("history-transaction", function($routes) {
         $routes->get('/', 'Admin\TransactionController::index', ["as" => "transactionIndex"]);
         $routes->get('ubah-status/(:num)', 'Admin\TransactionController::updateStatus/$1', ["as" => "transactionUpdateStatus"]);
+        $routes->get('edit/(:num)', 'Admin\TransactionController::edit/$1', ["as" => "transactionEdit"]);
+        $routes->post('update/(:num)', 'Admin\TransactionController::update/$1', ["as" => "transactionUpdate"]);
         $routes->get('delete/(:num)', 'Admin\TransactionController::delete/$1', ["as" => "transactionDelete"]);
+        $routes->post('upload-pickup', 'Admin\TransactionController::uploadPickUp', ["as" => "transactionUploadPickUp"]);
+        $routes->post('upload-dropoff', 'Admin\TransactionController::uploadDropOff', ["as" => "transactionUploadDropOff"]);
     });
 
 });

@@ -69,6 +69,26 @@ class TransactionController extends BaseController
         return redirect()->to(base_url('/tansaction/success'));
 
     }
+
+    public function edit($id)
+    {
+        $trx = new TransactionModel();
+        $data['trx'] = $trx->where('id', $id)->first();
+        return view('dashboard/pages/transaksi/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $trx = new TransactionModel();
+        $data = $trx->where('id', $id)->first();
+        
+        $trx->update($id, [
+            "total_price" => $this->request->getPost('total_price'),
+            "tgl_pengambilan" => $this->request->getPost('tgl_pengambilan'),
+            "status" => $this->request->getPost('status')
+        ]);
+        return redirect()->route('transactionIndex');
+    }
     
     public function delete($id)
     {
@@ -95,6 +115,41 @@ class TransactionController extends BaseController
             ]);
         }
         session()->setFlashdata('success', 'Berhasil ubah status!');
+        return redirect()->route('transactionIndex');
+    }
+
+    public function uploadPickUp()
+    {
+        $trans = new TransactionModel();
+        $dataBerkas = $this->request->getFile('img_pick_up');
+        
+        $data['trans'] = $trans->where('id', $this->request->getPost('id'))->first();
+        $fileName = $dataBerkas->getRandomName();
+    
+        // return $this->request->getPost('id');
+    
+        $trans->update($this->request->getPost('id'),[
+            'img_pick_up' => $fileName,
+            'status' => "Pengambilan Barang"
+        ]);
+        $dataBerkas->move('uploads/bukti/pick-up/', $fileName);
+        return redirect()->route('transactionIndex');
+    }
+
+    public function uploadDropOff()
+    {
+        $trans = new TransactionModel();
+        $dataBerkas = $this->request->getFile('img_drop_off');
+    
+        $data['trans'] = $trans->where('id', $this->request->getPost('id'))->first();
+        $fileName = $dataBerkas->getRandomName();
+        // return $this->request->getPost('id');
+    
+        $trans->update($this->request->getPost('id'),[
+            'img_drop_off' => $fileName,
+            'status' => "Pengembalian Barang"
+        ]);
+        $dataBerkas->move('uploads/bukti/drop-off/', $fileName);
         return redirect()->route('transactionIndex');
     }
 

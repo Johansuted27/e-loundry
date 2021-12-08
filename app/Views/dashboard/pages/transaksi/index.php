@@ -26,7 +26,7 @@
                     </div>
                 <?php } ?>
                 <div class="table-wrapper">
-                    <table id="datatable1" class="table display responsive nowrap">
+                    <table id="datatable1" class="table dt-responsive nowrap" width="100%">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -56,36 +56,36 @@
                                 <td>
                                     <?php if ($trxs['bukti_tf']) { ?>
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-success" id="btn-bukti" data-toggle="modal" data-target="#modalPriviewImg" data-img="<?= $trxs['bukti_tf']; ?>">
+                                            <button type="button" class="btn btn-success btn-sm btn-bukti" data-toggle="modal" data-target="#modalPriviewImg" data-img="<?= $trxs['bukti_tf']; ?>">
                                                 <i class="fa fa-image"></i>
                                             </button>
                                         </div>
                                     <?php } else { ?>  
-                                        <i class="text-info text-danger">Belum Unggah</i>
+                                        <small class="text-info text-danger">Belum Unggah</small>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if ($trxs['status'] == 'Belum di Bayar' || $trxs['status'] == 'Sedang di Konfirmasi') { ?>
-                                        <i class="text-info text-danger">Menunggu Pembayaran</i>
+                                        <small class="text-info text-danger">Menunggu Pembayaran</small>
                                     <?php } else { ?>
                                         <?php if ($trxs['img_pick_up']) { ?>
                                         <i class="text-info">Sudah Unggah</i>
                                         <?php } else { ?>  
-                                            <button type="button" class="btn btn-success btn-sm" id="btn-upload-pickup" data-toggle="modal" data-target="#modalUploadPickUp" data-id="<?= $trxs['id']; ?>">
-                                                <i class="fa fa-upload"></i> Input Gambar
+                                            <button type="button" class="btn btn-success btn-sm btn-upload-pickup" data-toggle="modal" data-target="#modalUploadPickUp" data-id="<?= $trxs['id']; ?>">
+                                                <i class="fa fa-upload"></i>
                                             </button>
                                         <?php } ?>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if ($trxs['status'] == 'Belum di Bayar' || $trxs['status'] == 'Sedang di Konfirmasi') { ?>
-                                        <i class="text-info text-danger">Menunggu Pembayaran</i>
+                                        <small class="text-info text-danger">Menunggu Pembayaran</small>
                                     <?php } else { ?>
                                         <?php if ($trxs['img_drop_off']) { ?>
                                         <i class="text-info">Sudah Unggah</i>
                                         <?php } else { ?>  
-                                            <button type="button" class="btn btn-info btn-sm" id="btn-upload-dropoff" data-toggle="modal" data-target="#modalUploadDropOff" data-id="<?= $trxs['id']; ?>">
-                                                <i class="fa fa-upload"></i> Input Gambar
+                                            <button type="button" class="btn btn-info btn-sm btn-upload-dropoff" data-toggle="modal" data-target="#modalUploadDropOff" data-id="<?= $trxs['id']; ?>">
+                                                <i class="fa fa-upload"></i>
                                             </button>
                                         <?php } ?>
                                     <?php } ?>
@@ -103,6 +103,7 @@
                                     <?php } else { ?>
                                         <!-- <a href="<?php echo base_url('/admin/history-transaction/ubah-status/'.$trxs['id']);?>" class="btn btn-warning btn-sm"><i class="fa fa-times"></i></a> -->
                                     <?php } ?>
+                                    <a href="<?php echo base_url('/admin/history-transaction/edit/'.$trxs['id']);?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                                     <a href="<?php echo base_url('/admin/history-transaction/delete/'.$trxs['id']);?>" onclick="return confirm('Yakin untuk menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -127,10 +128,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('/upload-gambar/pickup') ?>" method="POST" enctype="multipart/form-data">
+      <form action="<?= base_url('/admin/history-transaction/upload-pickup') ?>" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
             <input type="hidden" name="id" id="transaction_id_pickup">
-            <input type="file" name="img_pick_up" id="img_pick_up" class="form-control">
+            <input type="file" name="img_pick_up" id="img_pick_up" class="form-control" required>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
@@ -173,10 +174,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('/upload-gambar/dropoff') ?>" method="POST" enctype="multipart/form-data">
+      <form action="<?= base_url('/admin/history-transaction/upload-dropoff') ?>" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
             <input type="hidden" name="id" id="transaction_id_dropoff">
-            <input type="file" name="img_drop_off" id="img_drop_off" class="form-control">
+            <input type="file" name="img_drop_off" id="img_drop_off" class="form-control" required>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
@@ -190,21 +191,23 @@
 
 <?= $this->section('add-script') ?>
 <script>
-    $("#btn-upload-pickup").on('click', function () {
+    $(".btn-upload-pickup").on('click', function () {
+        document.getElementById("transaction_id_pickup").value = '';
+
         let id = $(this).attr('data-id');
-        // console.log(id);
+        console.log(id);
 
         document.getElementById("transaction_id_pickup").value = id;
     });
 
-    $("#btn-upload-dropoff").on('click', function () {
+    $(".btn-upload-dropoff").on('click', function () {
         let id = $(this).attr('data-id');
         // console.log(id);
 
         document.getElementById("transaction_id_dropoff").value = id;
     });
 
-    $("#btn-bukti").on('click', function () {
+    $(".btn-bukti").on('click', function () {
         let img = $(this).attr('data-img');
         let base_url = '<?php echo base_url() ?>';
         // console.log(base_url+'/uploads/bukti/'+img);
