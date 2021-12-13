@@ -82,9 +82,14 @@
 
 </div>
 <?php 
-    foreach ($dtTrx as $dtTrxs) {
-        $bulan[] = $dtTrxs['day'];
-        $total[] = $dtTrxs['count'];
+    if ($dtTrx) {
+        foreach ($dtTrx as $dtTrxs) {
+            $bulan[] = $dtTrxs['day'];
+            $total[] = $dtTrxs['count'];
+        }
+    } else {
+        $bulan = 0;
+        $total = 0;
     }
 ?>
 <?= $this->endSection() ?>
