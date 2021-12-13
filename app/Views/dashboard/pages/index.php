@@ -81,4 +81,34 @@
     </div><!-- row -->
 
 </div>
+<?php 
+    foreach ($dtTrx as $dtTrxs) {
+        $bulan[] = $dtTrxs['day'];
+        $total[] = $dtTrxs['count'];
+    }
+?>
+<?= $this->endSection() ?>
+<?= $this->section('add-script') ?>
+<script>
+    $(function(){
+        'use strict';
+
+        var ch1 = new Chartist.Line('#ch1', {
+            labels: <?= json_encode($bulan) ?>,
+            series: [<?= json_encode($total) ?>]
+        }, {
+            high: 20,
+            low: 0,
+            axisY: {
+            onlyInteger: true
+            },
+            showArea: true,
+            fullWidth: true,
+            chartPadding: {
+            bottom: 0,
+            left: 0
+            }
+        });
+    });
+</script>
 <?= $this->endSection() ?>

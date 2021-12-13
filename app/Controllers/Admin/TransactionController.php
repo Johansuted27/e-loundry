@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\TransactionModel;
 use App\Models\TransactionDetailModel;
+// use Dompdf\Dompdf;
 
 class TransactionController extends BaseController
 {
@@ -14,6 +15,8 @@ class TransactionController extends BaseController
         $this->UserModel = new UserModel();
         $this->TransactionModel = new TransactionModel();
         $this->TransactionDetailModel = new TransactionDetailModel();
+
+        $this->db = \Config\Database::connect();
     }
 
     function generateRandomString($length = 10) {
@@ -151,6 +154,50 @@ class TransactionController extends BaseController
         ]);
         $dataBerkas->move('uploads/bukti/drop-off/', $fileName);
         return redirect()->route('transactionIndex');
+    }
+
+    public function generatePDF()
+    {
+
+        $__data = $this->request->getPost();
+
+        $dompdf = new \Dompdf\Dompdf();
+
+        // $builder = $this->db->table('transactions');
+
+        // $query = $builder->select("COUNT(id) as count,MONTHNAME(created_at) as day, SUM(total_price) as sum_amount");
+        // $query = $builder->where('created_at >=', $__data['start_periode'])->where('created_at <=', $__data['end_periode'])->orderBy('MONTHNAME(created_at)', 'DESC')->get();
+        // $record = $query->getResult();
+
+        // $dtTrx = [];
+
+        // foreach($record as $row) {
+        //     $dtTrx[] = array(
+        //         'day'   => $row->day,
+        //         'sum_amount'   => $row->sum_amount,
+        //         'count'   => $row->count
+        //     );
+        // }
+        
+        // $data = ($dtTrx);
+
+        // echo json_encode($data);
+
+        $data = $this->db->table('transactions')->where('created_at >=', $__data['start_periode'])->where('created_at <=', $__data['end_periode'])->orderBy('created_at', 'ASC')->get()->getResult();
+        $data_grand_total = $this->db->table('transactions')->select("SUM(total_price) as grand_total")->where('created_at >=', $__data['start_periode'])->where('created_at <=', $__data['end_periode'])->orderBy('created_at', 'ASC')->get()->getResult();
+
+        if ($data) {
+            $dompdf->loadHtml(view('dashboard/pages/transaksi/pdf/laporan', ["trx" => $data, "grand_total" => $data_grand_total]));
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+            $dompdf->stream("laporan-per-periode");
+            
+            session()->setFlashdata('success', 'Laporan berhasil dibuat!');
+            return redirect()->route('transactionIndex');
+        } else {
+            session()->setFlashdata('error', 'Data tidak dapat ditemukan!');
+            return redirect()->route('transactionIndex');
+        }
     }
 
 }

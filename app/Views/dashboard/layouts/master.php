@@ -58,12 +58,12 @@
             <span class="menu-item-label">Transaksi</span>
           </div>
         </a>
-        <a href="" class="br-menu-link">
+        <!-- <a href="" class="br-menu-link">
           <div class="br-menu-item">
             <i class="menu-item-icon icon ion-ios-book tx-22"></i>
             <span class="menu-item-label">Report</span>
           </div>
-        </a>
+        </a> -->
       </div><!-- br-sideleft-menu -->
     </div><!-- br-sideleft -->
 
@@ -111,37 +111,14 @@
     <script src="<?php echo base_url('/dashboard/js/bracket.js') ?>"></script>
 
     <script>
-        $(function(){
-            'use strict';
-
-            var ch1 = new Chartist.Line('#ch1', {
-              labels: ["Agst", "Sept", "Okt", "Nov", "Des"],
-              series: [
-                [14, 35, 20, 15, 0, 0]
-              ]
-            }, {
-              high: 100,
-              low: 0,
-              axisY: {
-                onlyInteger: true
-              },
-              showArea: true,
-              fullWidth: true,
-              chartPadding: {
-                bottom: 0,
-                left: 0
-              }
-            });
-
-            $('#datatable1').DataTable({
-            responsive: true,
-            language: {
-                searchPlaceholder: 'Search...',
-                sSearch: '',
-                lengthMenu: '_MENU_ items/page',
-            }
-            });
-        });
+      $('#datatable1').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+      });
     </script>
 
     <?= $this->renderSection('add-script') ?>

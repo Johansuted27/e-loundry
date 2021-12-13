@@ -19,6 +19,22 @@
                 <p class="mb-0 mt-1">History Transaksi</p>
             </div>
             <div class="card-body">
+                <form action="<?= route_to('transactionPDF') ?>" method="post">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto">
+                            <div class="input-group mb-2">
+                                <input type="date" name="start_periode" id="start_periode" class="form-control" required>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text mt-2 mx-2">Sampai</div>
+                                </div>
+                                <input type="date" name="end_periode" id="end_periode" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">Laporan PDF</button>
+                        </div>
+                    </div>
+                </form>
                 <?php if($success){ ?>
                     <div class="alert alert-success w-100 mx-auto">
                         <button type="button" class="close" data-dismiss="alert">×</button>

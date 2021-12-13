@@ -297,6 +297,7 @@ $routes->group("admin", ["filter" => "auth"], function ($routes) {
         $routes->get('delete/(:num)', 'Admin\TransactionController::delete/$1', ["as" => "transactionDelete"]);
         $routes->post('upload-pickup', 'Admin\TransactionController::uploadPickUp', ["as" => "transactionUploadPickUp"]);
         $routes->post('upload-dropoff', 'Admin\TransactionController::uploadDropOff', ["as" => "transactionUploadDropOff"]);
+        $routes->post('laporan', 'Admin\TransactionController::generatePDF', ["as" => "transactionPDF"]);
     });
 
 });

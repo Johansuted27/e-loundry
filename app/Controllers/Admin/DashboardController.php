@@ -31,7 +31,31 @@ class DashboardController extends BaseController
         $data['products'] = $paketProduk->countAll();
         $data['layanans'] = $layananModel->countAll();
         $data['transactions'] = $transaksi->countAll();
-        // echo $userModel->countAll();
+
+        // $trxTable = $this->db->table("transactions");
+        // $trxTable->select('count(id) as total_transaksi, Month(created_at) as month');
+        // $trxTable->groupBy("Month(created_at)");
+        // $data['dataTrx'] = $trxTable->get();
+
+        $builder = $this->db->table('transactions');
+
+        $query = $builder->select("COUNT(id) as count, MONTHNAME(created_at) as day");
+        $query = $builder->where("DAY(created_at) GROUP BY MONTHNAME(created_at)")->orderBy('MONTHNAME(created_at)', 'DESC')->get();
+        $record = $query->getResult();
+
+        $dtTrx = [];
+
+        foreach($record as $row) {
+            $dtTrx[] = array(
+                'day'   => $row->day,
+                'count'   => $row->count
+            );
+        }
+        
+        $data['dtTrx'] = ($dtTrx);    
+
+        // echo json_encode($data['dtTrx']);
         return view('/dashboard/pages/index', $data);
     }
+
 }
